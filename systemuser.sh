@@ -61,7 +61,7 @@ if [ -f $LCG_VIEW/bin/python3 ]; then PYVERSION=3; else PYVERSION=2; fi
 PYKERNELDIR=$KERNEL_DIR/python$PYVERSION
 cp -r /usr/local/share/jupyter/kernelsBACKUP/python2 $PYKERNELDIR
 echo "{
- \"display_name\": \"Python $PYVERSION\",
+ \"display_name\": \"Pythonn $PYVERSION\",
  \"language\": \"python\",
  \"argv\": [
   \"python$PYVERSION\",
