@@ -1,0 +1,17 @@
+language: python
+sudo: required
+services:
+- docker
+
+before_script: docker login -u=$DOCKER_USER -p=$DOCKER_PASS
+
+script: docker build -f swanimage.Dockerfile -t krishnanr/sparkmonitorhub .
+ 
+after_success: docker push krishnanr/sparkmonitorhub
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: docker tag krishnanr/sparkmonitorhub krishnanr/sparkmonitorhub:$TRAVIS_TAG && docker push krishnanr/sparkmonitorhub:$TRAVIS_TAG'
+  on:
+    tags: true

@@ -70,7 +70,7 @@ echo "{
   \"-f\",
   \"{connection_file}\"
  ],
-  \"env\": {\"PYTHONSTARTUP\":\"/startup.py\"} #PYTHONSTARTUP configuration for SWAN
+  \"env\": {\"PYTHONSTARTUP\":\"/srv/singleuser/startup.py\"} #PYTHONSTARTUP configuration for SWAN
 }" > $PYKERNELDIR/kernel.json
 # ROOT
 cp -rL $LCG_VIEW/etc/notebook/kernels/root $KERNEL_DIR
