@@ -12,6 +12,6 @@ after_success: docker push krishnanr/sparkmonitorhub
 deploy:
   provider: script
   skip_cleanup: true
-  script: docker tag krishnanr/sparkmonitorhub krishnanr/sparkmonitorhub:$TRAVIS_TAG && docker push krishnanr/sparkmonitorhub:$TRAVIS_TAG'
+  script: docker tag krishnanr/sparkmonitorhub krishnanr/sparkmonitorhub:$TRAVIS_TAG && docker push krishnanr/sparkmonitorhub:$TRAVIS_TAG
   on:
     tags: true
