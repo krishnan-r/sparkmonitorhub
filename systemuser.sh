@@ -40,6 +40,7 @@ JPY_CONFIG=$JUPYTER_CONFIG_DIR/jupyter_notebook_config.py
 echo "c.FileCheckpoints.checkpoint_dir = '$SCRATCH_HOME/.ipynb_checkpoints'"         >> $JPY_CONFIG
 echo "c.NotebookNotary.db_file = '$JPY_LOCAL_DIR/share/jupyter/nbsignatures.db'"     >> $JPY_CONFIG
 echo "c.NotebookNotary.secret_file = '$JPY_LOCAL_DIR/share/jupyter/notebook_secret'" >> $JPY_CONFIG
+# echo "c.NotebookApp.nbserver_extensions = ''" >> $JPY_CONFIG
 #echo "c.NotebookApp.extra_template_paths = ['/srv/singleuser/swan-templates']" >> $JPY_CONFIG
 #echo "c.NotebookApp.contents_manager_class = 'swancontents.swanfilemanager.SwanFileManager'" >> $JPY_CONFIG
 cp -L -r $LCG_VIEW/etc/jupyter/* $JUPYTER_CONFIG_DIR
@@ -107,9 +108,9 @@ sudo -E -u $USER sh -c '   source $LCG_VIEW/setup.sh \
                              export SPARKMONITOR_UI_PORT=$SPARK_PORT_4  ; \
                              echo "SparkMonitor UI is on $SPARKMONITOR_UI_HOST at port $SPARKMONITOR_UI_PORT" ; \
                              echo "PYTHONSTARTUP is $PYTHONSTARTUP" ; \
-                             which jupyter; /opt/conda/bin/jupyter serverextension enable sparkmonitor --user --py ; \
-                             # which jupyter; /opt/conda/bin/jupyter serverextension enable sparkmonitor --sys-prefix --py ; \
-                             which jupyter; /opt/conda/bin/jupyter serverextension enable sparkmonitor --py ; \
+                             which jupyter; jupyter serverextension enable sparkmonitor --user --py ; \
+                             jupyter serverextension enable --py sparkmonitor --config="$JUPYTER_CONFIG_DIR/.jupyter/jupyter_notebook_config.json"
+                             which jupyter; jupyter serverextension enable sparkmonitor --py ; \
                              echo "----Completed SparkMonitor Configuration" ; \
                            fi \
                         && export JUPYTER_DATA_DIR=$LCG_VIEW/share/jupyter \
