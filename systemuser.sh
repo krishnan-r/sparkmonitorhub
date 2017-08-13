@@ -107,9 +107,9 @@ sudo -E -u $USER sh -c '   source $LCG_VIEW/setup.sh \
                              export SPARKMONITOR_UI_PORT=$SPARK_PORT_4  ; \
                              echo "SparkMonitor UI is on $SPARKMONITOR_UI_HOST at port $SPARKMONITOR_UI_PORT" ; \
                              echo "PYTHONSTARTUP is $PYTHONSTARTUP" ; \
-                             which jupyter; jupyter serverextension enable sparkmonitor --user --py ; \
-                             which jupyter; jupyter serverextension enable sparkmonitor --sys-prefix --py ; \
-                             which jupyter; jupyter serverextension enable sparkmonitor --py ; \
+                             which jupyter; /opt/conda/bin/jupyter serverextension enable sparkmonitor --user --py ; \
+                             # which jupyter; /opt/conda/bin/jupyter serverextension enable sparkmonitor --sys-prefix --py ; \
+                             which jupyter; /opt/conda/bin/jupyter serverextension enable sparkmonitor --py ; \
                              echo "----Completed SparkMonitor Configuration" ; \
                            fi \
                         && export JUPYTER_DATA_DIR=$LCG_VIEW/share/jupyter \
