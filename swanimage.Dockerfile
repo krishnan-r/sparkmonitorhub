@@ -1,7 +1,7 @@
 FROM cernphsft/systemuser:test
 
 # #Possible fix for serverextension not loading??
-# RUN sudo pip3 install jupyter_nbextensions_configurator 
+RUN sudo pip3 install jupyter_nbextensions_configurator 
 ADD ./notebooks/ /notebooks/
 
 

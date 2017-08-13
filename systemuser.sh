@@ -97,14 +97,17 @@ sudo -E -u $USER sh -c '   source $LCG_VIEW/setup.sh \
                              cp -r /usr/local/lib/python2.7/site-packages/sparkmonitor /scratch/$USER/lib; \
                              cp -r /usr/local/lib/python2.7/site-packages/bs4 /scratch/$USER/lib; # used by sparkmonitor to change base urls in spark UI \
                              cp -r /notebooks/ $SWAN_HOME; \
+                             echo "Running nbextension commands" ; \
                              jupyter nbextension install --symlink --user --py sparkmonitor; \
                              jupyter nbextension enable --user --py sparkmonitor; \
                              ipython profile create; \
                              echo "c.InteractiveShellApp.extensions.append('\''sparkmonitor'\'')" >>  $(ipython profile locate default)/ipython_kernel_config.py ; \
-                             export PYTHONSTARTUP=/srv/singleuser/startup.py:$PYTHONSTARTUP ; \
+                             export PYTHONSTARTUP=/srv/singleuser/startup.py; \
                              export SPARKMONITOR_UI_HOST=$SERVER_HOSTNAME ; \
                              export SPARKMONITOR_UI_PORT=$SPARK_PORT_4  ; \
                              echo "SparkMonitor UI is on $SPARKMONITOR_UI_HOST at port $SPARKMONITOR_UI_PORT" ; \
+                             echo "PYTHONSTARTUP is $PYTHONSTARTUP" ; \
+                             which jupyter; jupyter serverextension enable sparkmonitor --user --py ; \
                              echo "----Completed SparkMonitor Configuration" ; \
                            fi \
                         && export JUPYTER_DATA_DIR=$LCG_VIEW/share/jupyter \
