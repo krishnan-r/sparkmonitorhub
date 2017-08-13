@@ -84,22 +84,28 @@ export SWAN_ENV_FILE=/tmp/swan.sh
 sudo -E -u $USER sh -c '   source $LCG_VIEW/setup.sh \
                         && if [[ $SPARK_CLUSTER_NAME ]]; \
                            then \
-                             echo "Configuring environment for Spark cluster: $SPARK_CLUSTER_NAME"; \
+                             echo "-----Configuring environment for Spark cluster: $SPARK_CLUSTER_NAME"; \
                              source $SPARK_CONFIG_SCRIPT $SPARK_CLUSTER_NAME; \
                              export SPARK_LOCAL_IP=`hostname -i`; \
                              wget -P $SWAN_HOME https://raw.githubusercontent.com/etejedor/Spark-Notebooks/master/SWAN-Spark_NXCALS_Example.ipynb; \
+                             echo "Starting SparkMonitor Configuration" ; \
                              export PYTHONPATH=/scratch/$USER/lib:$PYTHONPATH; \
                              mkdir -p /scratch/$USER/lib; \
                              cp -r /usr/local/lib/python2.7/site-packages/ipykernel /scratch/$USER/lib; \
                              cp -r /usr/local/lib/python2.7/site-packages/IPython /scratch/$USER/lib; \
                              
                              cp -r /usr/local/lib/python2.7/site-packages/sparkmonitor /scratch/$USER/lib; \
-                             cp -r /usr/local/lib/python2.7/site-packages/bs4 /scratch/$USER/lib; \
+                             cp -r /usr/local/lib/python2.7/site-packages/bs4 /scratch/$USER/lib; # used by sparkmonitor to change base urls in spark UI \
                              cp -r /notebooks/ $SWAN_HOME; \
                              jupyter nbextension install --symlink --user --py sparkmonitor; \
                              jupyter nbextension enable --user --py sparkmonitor; \
                              ipython profile create; \
-                             echo "c.InteractiveShellApp.extensions.append('\''sparkmonitor'\'')" >>  $(ipython profile locate default)/ipython_kernel_config.py; \
+                             echo "c.InteractiveShellApp.extensions.append('\''sparkmonitor'\'')" >>  $(ipython profile locate default)/ipython_kernel_config.py ; \
+                             export PYTHONSTARTUP=/srv/singleuser/startup.py:$PYTHONSTARTUP ; \
+                             export SPARKMONITOR_UI_HOST=$SERVER_HOSTNAME ; \
+                             export SPARKMONITOR_UI_PORT=$SPARK_PORT_4  ; \
+                             echo "SparkMonitor UI is on $SPARKMONITOR_UI_HOST at port $SPARKMONITOR_UI_PORT" ; \
+                             echo "----Completed SparkMonitor Configuration" ; \
                            fi \
                         && export JUPYTER_DATA_DIR=$LCG_VIEW/share/jupyter \
                         && export TMP_SCRIPT=`mktemp` \

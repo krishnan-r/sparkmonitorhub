@@ -1,3 +1,4 @@
+# This file is loaded when the ipython kernel starts.
 # Ipython extensions are loaded before PYTHONSTARTUP script
 # So this script needs to append to the conf object if one exists or create a new one.
 print("In Spark PYTHONSTARTUP script," + __name__)

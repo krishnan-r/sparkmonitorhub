@@ -5,9 +5,9 @@ FROM cernphsft/systemuser:test
 ADD ./notebooks/ /notebooks/
 
 
-RUN which pip3; pip3 install https://github.com/krishnan-r/sparkmonitor/releases/download/v0.0.3/sparkmonitor.tar.gz
-RUN which pip2; pip2 install https://github.com/krishnan-r/sparkmonitor/releases/download/v0.0.3/sparkmonitor.tar.gz
-RUN which pip; pip install https://github.com/krishnan-r/sparkmonitor/releases/download/v0.0.3/sparkmonitor.tar.gz
+RUN which pip3; pip3 install https://github.com/krishnan-r/sparkmonitor/releases/download/v0.0.4/sparkmonitor.tar.gz
+RUN which pip2; pip2 install https://github.com/krishnan-r/sparkmonitor/releases/download/v0.0.4/sparkmonitor.tar.gz
+RUN which pip; pip install https://github.com/krishnan-r/sparkmonitor/releases/download/v0.0.4/sparkmonitor.tar.gz
 
 #RUN sudo /usr/local/bin/jupyter serverextension enable sparkmonitor --py
 RUN which jupyter; jupyter serverextension enable sparkmonitor --sys-prefix --py
