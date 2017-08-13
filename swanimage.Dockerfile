@@ -11,6 +11,10 @@ RUN which pip; pip install https://github.com/krishnan-r/sparkmonitor/releases/d
 
 #RUN sudo /usr/local/bin/jupyter serverextension enable sparkmonitor --py
 RUN which jupyter; jupyter serverextension enable sparkmonitor --sys-prefix --py
+RUN which jupyter; jupyter serverextension enable sparkmonitor --user --py
+RUN which jupyter; jupyter serverextension enable sparkmonitor --py
+RUN which jupyter; jupyter serverextension enable sparkmonitor --system --py
+
 
 ADD startup.py /srv/singleuser/startup.py
 ADD systemuser.sh /srv/singleuser/systemuser.sh
