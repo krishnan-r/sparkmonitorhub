@@ -171,7 +171,8 @@ chmod +x $SWAN_BASH
 
 # Run notebook server
 echo "Running the notebook server"
-sudo -E -u $USER sh -c '   cd $SWAN_HOME \
+sudo -E -u $USER sh -c '   echo "Here SparkMonitor UI is on $SPARKMONITOR_UI_HOST at port $SPARKMONITOR_UI_PORT" ; \
+                           cd $SWAN_HOME \
                         && SHELL=$SWAN_BASH jupyterhub-singleuser \
                            --port=8888 \
                            --ip=0.0.0.0 \
