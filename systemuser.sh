@@ -162,6 +162,10 @@ export SWAN_BASH=/bin/swan_bash
 printf "#! /bin/env python\nfrom subprocess import call\nimport sys\ncall([\"bash\", \"--rcfile\", \"$SWAN_ENV_FILE\"]+sys.argv[1:])\n" >> $SWAN_BASH
 chmod +x $SWAN_BASH
 
+export SPARKMONITOR_UI_HOST=$SERVER_HOSTNAME
+export SPARKMONITOR_UI_PORT=$SPARK_PORT_4
+echo "When setting terminal environment SparkMonitor UI is on $SPARKMONITOR_UI_HOST at port $SPARKMONITOR_UI_PORT"
+
 #echo "--------------------------------"
 #jupyter nbextension install /srv/singleuser/jupyter-share/ --sys-prefix
 #jupyter nbextension enable jupyter-share/notebook --sys-prefix
