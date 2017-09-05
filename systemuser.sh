@@ -102,7 +102,7 @@ sudo -E -u $USER sh -c '   source $LCG_VIEW/setup.sh \
                              jupyter nbextension install --symlink --user --py sparkmonitor; \
                              jupyter nbextension enable --user --py sparkmonitor; \
                              ipython profile create; \
-                             echo "c.InteractiveShellApp.extensions.append('\''sparkmonitor'\'')" >>  $(ipython profile locate default)/ipython_kernel_config.py ; \
+                             echo "c.InteractiveShellApp.extensions.append('\''sparkmonitor.kernelextension'\'')" >>  $(ipython profile locate default)/ipython_kernel_config.py ; \
                              export PYTHONSTARTUP=/srv/singleuser/startup.py; \
                              export SPARKMONITOR_UI_HOST=$SERVER_HOSTNAME ; \
                              export SPARKMONITOR_UI_PORT=$SPARK_PORT_4  ; \
